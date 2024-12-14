@@ -1,6 +1,20 @@
-#!/usr/bin/env node
 import * as cdk from "aws-cdk-lib";
-import { LambdaStack } from "./stacks/LambdaStack";
+import { MyVpcStack } from "./stacks/MyVpcStack";
+import { MyPostgresStack } from "./stacks/MyPostgresStack";
+import { MyLambdaStack } from "./stacks/MyLambdaStack";
 
 const app = new cdk.App();
-new LambdaStack(app, "LambdaStack");
+
+// Create VPC Stack
+const vpcStack = new MyVpcStack(app, "MyVpcStack");
+
+// Create Lambda Stack
+const lambda = new MyLambdaStack(app, "LambdaStack", {
+  vpc: vpcStack.vpc,
+});
+
+// Create PostgreSQL Stack
+new MyPostgresStack(app, "PostgresStack", {
+  vpc: vpcStack.vpc,
+  lambdaSecurityGroup: lambda.lambdaSecurityGroup,
+});

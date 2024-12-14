@@ -27,12 +27,10 @@ export const initializeDatabase = async () => {
   try {
     if (!AppDataSource.isInitialized) {
       await AppDataSource.initialize();
-      console.log("Database connection established successfully.");
-    } else {
-      console.log("Reusing existing database connection.");
+      console.log("***--- Database connection established successfully");
     }
   } catch (error) {
-    console.error("Database connection failed:", error);
-    throw createError(500, "Failed to connect to the database: " + error);
+    console.error("***--- Database connection failed:", error);
+    throw createError(500, "***--- Failed to connect to the database: " + error);
   }
 };
