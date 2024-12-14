@@ -34,7 +34,7 @@ export class MyLambdaStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_22_X,
       timeout: cdk.Duration.seconds(120),
       environment: {
-        DB_HOST: "postgresstack-supersightrdsinstancea1889fb6-pygy9gaas7qv.czk868048us1.eu-north-1.rds.amazonaws.com",
+        DB_HOST: "database",
         DB_PORT: "5432",
         DB_USER: "postgres",
         DB_PASSWORD: "postgres",
