@@ -8,13 +8,12 @@ const app = new cdk.App();
 // Create VPC Stack
 const vpcStack = new MyVpcStack(app, "MyVpcStack");
 
-// Create Lambda Stack
-const lambda = new MyLambdaStack(app, "LambdaStack", {
-  vpc: vpcStack.vpc,
-});
-
 // Create PostgreSQL Stack
 new MyPostgresStack(app, "PostgresStack", {
   vpc: vpcStack.vpc,
-  lambdaSecurityGroup: lambda.lambdaSecurityGroup,
+});
+
+// Create Lambda Stack
+new MyLambdaStack(app, "LambdaStack", {
+  vpc: vpcStack.vpc,
 });

@@ -11,12 +11,9 @@ import {
 } from "aws-cdk-lib/aws-ec2";
 import { DatabaseInstance, DatabaseInstanceEngine, PostgresEngineVersion } from "aws-cdk-lib/aws-rds";
 import { Construct } from "constructs";
-import * as secretsmanager from "aws-cdk-lib/aws-secretsmanager";
-import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 
 interface PostgresStackProps extends StackProps {
   vpc: Vpc;
-  lambdaSecurityGroup: SecurityGroup;
 }
 
 export class MyPostgresStack extends Stack {
@@ -34,11 +31,6 @@ export class MyPostgresStack extends Stack {
       description: "Security group for RDS instance",
     });
 
-    this.rdsSecurityGroup.addIngressRule(
-      Peer.securityGroupId(props.lambdaSecurityGroup.securityGroupId),
-      Port.tcp(5432),
-      "Allow Lambda to connect to PostgreSQL"
-    );
     this.rdsSecurityGroup.addIngressRule(
       Peer.ipv4("91.153.48.32/32"),
       Port.tcp(5432),
@@ -73,6 +65,12 @@ export class MyPostgresStack extends Stack {
     new CfnOutput(this, "SupersightRdsInstanceEndpoint", {
       value: this.database.dbInstanceEndpointAddress,
       description: "The endpoint of the PostgreSQL RDS instance",
+    });
+
+    new CfnOutput(this, "SupersightRdsSecurityGroup", {
+      value: this.rdsSecurityGroup.securityGroupId,
+      description: "Security Group for RDS instance",
+      exportName: "SupersightRdsSecurityGroup",
     });
   }
 }

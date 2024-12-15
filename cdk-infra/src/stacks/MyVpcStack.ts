@@ -12,7 +12,6 @@ export class MyVpcStack extends Stack {
       ipAddresses: IpAddresses.cidr("10.0.0.0/24"),
       maxAzs: 2,
       natGateways: 0,
-      restrictDefaultSecurityGroup: true,
       subnetConfiguration: [
         {
           name: "PrivateSubnet",
