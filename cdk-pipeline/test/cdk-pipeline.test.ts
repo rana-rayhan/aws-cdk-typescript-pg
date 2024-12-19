@@ -1,9 +1,8 @@
-import { handler } from "../lambda";
+import { handler } from "../src";
 
 describe("CDK Pipeline Stack", () => {
-  test("Lambda Stack should return status code: 200", async () => {
+  test("Snapshot", async () => {
     const result = await handler({}, {});
-
-    expect(result.statusCode).toBe(200);
+    expect(result).toMatchSnapshot();
   });
 });

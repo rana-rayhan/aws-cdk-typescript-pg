@@ -14,7 +14,7 @@ export class MyLambdaStack extends cdk.Stack {
 
     this.myLambda = new NodejsFunction(this, "MyLambda", {
       handler: "handler",
-      entry: join(__dirname, "..", "..", "..", "lambda", "src", "index.ts"),
+      entry: join(__dirname, "..", "..", "..", "cdk-pipeline", "src", "index.ts"),
       runtime: lambda.Runtime.NODEJS_22_X,
       timeout: cdk.Duration.seconds(120),
       environment: {
@@ -41,3 +41,4 @@ export class MyLambdaStack extends cdk.Stack {
     });
   }
 }
+// it  roking with cdk deploy and lambda insdie cdk-infra
