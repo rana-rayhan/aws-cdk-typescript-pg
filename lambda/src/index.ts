@@ -53,10 +53,10 @@ app.get("/secret", async (req, res) => {
   }
 });
 
-app.listen(4000, async () => console.log("running on 4000"));
+// app.listen(4000, async () => console.log("running on 4000"));
 
 // Lambda handler
-// export const handler = (event: any, context: any) => {
-//   const server = awsServerlessExpress.createServer(app);
-//   return awsServerlessExpress.proxy(server, event, context);
-// };
+export const handler = (event: any, context: any) => {
+  const server = awsServerlessExpress.createServer(app);
+  return awsServerlessExpress.proxy(server, event, context);
+};
