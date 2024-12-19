@@ -36,6 +36,7 @@ app.get("/users/data", async (req, res) => {
   }
 });
 
+// Get secret
 app.get("/secret", async (req, res) => {
   const client = new SecretsManagerClient({ region: "eu-north-1" });
 
