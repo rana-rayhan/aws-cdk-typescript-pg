@@ -25,6 +25,7 @@ export class MyLambdaStack extends cdk.Stack {
         DB_PASSWORD: "postgres",
         DB_DATABASE: "mydatabase",
       },
+      bundling: {},
     });
 
     const api = new LambdaRestApi(this, "LambdaRestApi", {
