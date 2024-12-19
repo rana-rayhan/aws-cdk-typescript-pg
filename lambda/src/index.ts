@@ -16,7 +16,7 @@ app.use(express.json());
 // Get all users
 app.get("/", async (req, res) => {
   try {
-    // test
+    // test 2
     await initializeDatabase();
     // const users = await AppDataSource.getRepository(User).find();
     res.json({ message: "Success" });
