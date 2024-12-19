@@ -28,7 +28,7 @@ app.get("/", async (req, res) => {
 
 app.get("/users/data", async (req, res) => {
   try {
-    await initializeDatabase();
+    // await initializeDatabase();
     res.json({ message: "Success" });
   } catch (error) {
     console.error("Error fetching users:", error);
