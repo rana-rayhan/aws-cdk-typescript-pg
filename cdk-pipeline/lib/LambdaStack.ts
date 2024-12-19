@@ -23,6 +23,9 @@ export class LambdaStack extends Stack {
         DB_PASSWORD: "postgres",
         DB_DATABASE: "mydatabase",
       },
+      bundling: {
+        externalModules: ["reflect-metadata", "express", "dotenv", "typeorm", "http-errors"],
+      },
     });
   }
 }
