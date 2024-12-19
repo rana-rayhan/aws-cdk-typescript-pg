@@ -15,6 +15,7 @@ app.use(express.json());
 
 // Get all users
 app.get("/", async (req, res) => {
+  // test 1 - check if db is connected
   try {
     await initializeDatabase();
     // test 2
@@ -61,3 +62,5 @@ export const handler = (event: any, context: any) => {
   const server = awsServerlessExpress.createServer(app);
   return awsServerlessExpress.proxy(server, event, context);
 };
+
+// start deploy pipeline with cdk init projetc it lambda and raw cdk
