@@ -1,17 +1,26 @@
 import * as cdk from "aws-cdk-lib";
 import { CodePipeline, CodePipelineSource, ShellStep } from "aws-cdk-lib/pipelines";
 import { Construct } from "constructs";
+import { PipelineStageStack } from "./PipelineStageStack";
 
 export class CdkPipelineStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    new CodePipeline(this, "TestCICDPipeline", {
+    const pipeline = new CodePipeline(this, "TestCICDPipeline", {
       pipelineName: "TestCICDPipeline",
+
       synth: new ShellStep("Synth", {
+        input: CodePipelineSource.gitHub("rana-rayhan/aws-cdk-typescript-pg", "cdk-pipeline"),
         commands: ["cd cdk-pipeline", "npm ci", "npx cdk synth"],
         primaryOutputDirectory: "cdk-pipeline/cdk.out",
       }),
     });
+
+    const testStage = pipeline.addStage(
+      new PipelineStageStack(this, "PipelineStageStack", {
+        stageName: "test",
+      })
+    );
   }
 }
