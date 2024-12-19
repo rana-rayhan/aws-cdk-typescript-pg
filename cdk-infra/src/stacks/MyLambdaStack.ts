@@ -24,15 +24,15 @@ export class MyLambdaStack extends cdk.Stack {
         DB_DATABASE: "mydatabase",
       },
       bundling: {
-        externalModules: [
-          "reflect-metadata",
-          "express",
-          "dotenv",
-          "typeorm",
-          "http-errors",
-          "@aws-sdk/client-secrets-manager",
-          "aws-serverless-express",
-        ],
+        // externalModules: [
+        //   "reflect-metadata",
+        //   "express",
+        //   "dotenv",
+        //   "typeorm",
+        //   "http-errors",
+        //   "@aws-sdk/client-secrets-manager",
+        //   "aws-serverless-express",
+        // ],
       },
     });
     //
