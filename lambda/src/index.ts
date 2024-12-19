@@ -15,10 +15,9 @@ app.use(express.json());
 
 // Get all users
 app.get("/", async (req, res) => {
-  // test 1 - check if db is connected
   try {
+    const secretId = process.env.SECRET_ID || "github-token";
     await initializeDatabase();
-    // test 2
     // const users = await AppDataSource.getRepository(User).find();
     res.json({ message: "Success" });
   } catch (error) {
