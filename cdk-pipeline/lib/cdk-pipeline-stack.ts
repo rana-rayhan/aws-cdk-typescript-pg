@@ -9,9 +9,8 @@ export class CdkPipelineStack extends cdk.Stack {
     new CodePipeline(this, "TestCICDPipeline", {
       pipelineName: "TestCICDPipeline",
       synth: new ShellStep("Synth", {
-        input: CodePipelineSource.gitHub("rana-rayhan/aws-cdk-typescript-pg", "master"),
-        commands: ["cd ", "npm i", "npx cdk synth"],
-        primaryOutputDirectory: "cdk.out",
+        commands: ["cd cdk-pipeline", "npm ci", "npx cdk synth"],
+        primaryOutputDirectory: "cdk-pipeline/cdk.out",
       }),
     });
   }
