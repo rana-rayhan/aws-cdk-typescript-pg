@@ -16,7 +16,7 @@ app.use(express.json());
 // Get all users
 app.get("/", async (req, res) => {
   try {
-    await initializeDatabase();
+    // await initializeDatabase();
     // const users = await AppDataSource.getRepository(User).find();
     res.json({ message: "Success" });
   } catch (error) {
@@ -28,8 +28,7 @@ app.get("/", async (req, res) => {
 app.get("/users/data", async (req, res) => {
   try {
     await initializeDatabase();
-    const users = await AppDataSource.getRepository(User).find();
-    res.json({ message: "Success", users: users });
+    res.json({ message: "Success" });
   } catch (error) {
     console.error("Error fetching users:", error);
     res.status(500).json({ message: "Internal Server Error", error });
