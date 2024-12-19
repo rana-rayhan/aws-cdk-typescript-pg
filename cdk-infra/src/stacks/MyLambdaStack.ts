@@ -14,7 +14,7 @@ export class MyLambdaStack extends cdk.Stack {
 
     this.myLambda = new NodejsFunction(this, "MyLambda", {
       handler: "handler",
-      entry: join(__dirname, "..", "..", "..", "lambda", "src", "index.ts"),
+      entry: join(__dirname, "..", "lambda", "index.ts"),
       runtime: lambda.Runtime.NODEJS_22_X,
       timeout: cdk.Duration.seconds(120),
       environment: {
@@ -23,17 +23,17 @@ export class MyLambdaStack extends cdk.Stack {
         DB_PASSWORD: "postgres",
         DB_DATABASE: "mydatabase",
       },
-      bundling: {
-        externalModules: [
-          "reflect-metadata",
-          "express",
-          "dotenv",
-          "typeorm",
-          "http-errors",
-          "@aws-sdk/client-secrets-manager",
-          "aws-serverless-express",
-        ],
-      },
+      // bundling: {
+      //   externalModules: [
+      //     "reflect-metadata",
+      //     "express",
+      //     "dotenv",
+      //     "typeorm",
+      //     "http-errors",
+      //     "@aws-sdk/client-secrets-manager",
+      //     "aws-serverless-express",
+      //   ],
+      // },
     });
 
     const api = new LambdaRestApi(this, "LambdaRestApi", {

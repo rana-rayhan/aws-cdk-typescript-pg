@@ -11,6 +11,8 @@
     "cdk": "cdk"
   },
   "devDependencies": {
+    "@types/aws-serverless-express": "^3.3.10",
+    "@types/express": "^4.17.13",
     "@types/jest": "^29.5.14",
     "@types/node": "22.7.9",
     "aws-cdk": "2.172.0",
