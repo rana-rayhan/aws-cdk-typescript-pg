@@ -23,7 +23,17 @@ export class MyLambdaStack extends cdk.Stack {
         DB_PASSWORD: "postgres",
         DB_DATABASE: "mydatabase",
       },
-      bundling: {},
+      bundling: {
+        externalModules: [
+          "reflect-metadata",
+          "express",
+          "dotenv",
+          "typeorm",
+          "http-errors",
+          "@aws-sdk/client-secrets-manager",
+          "aws-serverless-express",
+        ],
+      },
     });
 
     const api = new LambdaRestApi(this, "LambdaRestApi", {
