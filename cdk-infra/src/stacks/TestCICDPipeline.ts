@@ -24,10 +24,10 @@ export class TestCICDPipeline extends Stack {
         stageName: "test-lambda",
       })
     );
-    // testStage.addPre(
-    //   new ShellStep("Pre-Test", {
-    //     commands: ["cd cdk-pipeline", "npm ci", "npm test"],
-    //   })
-    // );
+    testStage.addPre(
+      new ShellStep("Pre-Test", {
+        commands: ["cd cdk-infra", "npm ci", "npm test"],
+      })
+    );
   }
 }
