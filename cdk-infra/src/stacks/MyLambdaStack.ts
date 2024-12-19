@@ -57,6 +57,11 @@ export class MyLambdaStack extends cdk.Stack {
       vpc: props.vpc,
       securityGroups: [this.lambdaSecurityGroup],
       vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
+
+      bundling: {
+        externalModules: ["aws-sdk"],
+        nodeModules: ["express", "typeorm", "dotenv", "http-errors"],
+      },
     });
 
     const api = new LambdaRestApi(this, "LambdaRestApi", {
