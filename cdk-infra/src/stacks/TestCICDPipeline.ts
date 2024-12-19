@@ -1,6 +1,7 @@
-import { SecretValue, Stack, StackProps } from "aws-cdk-lib";
-import { CodePipeline, CodePipelineSource, ShellStep } from "aws-cdk-lib/pipelines";
 import { Construct } from "constructs";
+import { Stack, StackProps } from "aws-cdk-lib";
+import { PipelineStageStack } from "./PipelineStageStack";
+import { CodePipeline, CodePipelineSource, ShellStep } from "aws-cdk-lib/pipelines";
 
 export class TestCICDPipeline extends Stack {
   public gitToken: string;
@@ -8,13 +9,25 @@ export class TestCICDPipeline extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    new CodePipeline(this, "TestCICDPipeline", {
+    const pipeline = new CodePipeline(this, "TestCICDPipeline", {
       pipelineName: "TestCICDPipeline",
+
       synth: new ShellStep("Synth", {
-        input: CodePipelineSource.gitHub("rana-rayhan/aws-cdk-typescript-pg", "master"),
+        input: CodePipelineSource.gitHub("rana-rayhan/aws-cdk-typescript-pg", "cdk-pipeline"),
         commands: ["cd cdk-infra", "npm ci", "npx cdk synth"],
         primaryOutputDirectory: "cdk-infra/cdk.out",
       }),
     });
+    //stage
+    const testStage = pipeline.addStage(
+      new PipelineStageStack(this, "PipelineTestStage", {
+        stageName: "test",
+      })
+    );
+    // testStage.addPre(
+    //   new ShellStep("Pre-Test", {
+    //     commands: ["cd cdk-pipeline", "npm ci", "npm test"],
+    //   })
+    // );
   }
 }
