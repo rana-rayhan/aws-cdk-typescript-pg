@@ -21,7 +21,7 @@ export class TestCICDPipeline extends Stack {
     //stage
     const testStage = pipeline.addStage(
       new PipelineStageStack(this, "PipelineTestStage", {
-        stageName: "test",
+        stageName: "test-lambda",
       })
     );
     // testStage.addPre(
