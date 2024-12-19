@@ -13,7 +13,7 @@ export class LambdaStack extends Stack {
 
     new NodejsFunction(this, "MyLambda", {
       handler: "handler",
-      entry: join(__dirname, "..", "..", "lambda", "dist", "index.js"),
+      entry: join(__dirname, "..", "..", "lambda", "src", "index.ts"),
       runtime: Runtime.NODEJS_22_X,
       timeout: Duration.seconds(120),
       environment: {
@@ -23,17 +23,17 @@ export class LambdaStack extends Stack {
         DB_PASSWORD: "postgres",
         DB_DATABASE: "mydatabase",
       },
-      // bundling: {
-      //   externalModules: [
-      //     "reflect-metadata",
-      //     "express",
-      //     "dotenv",
-      //     "typeorm",
-      //     "http-errors",
-      //     "@aws-sdk/client-secrets-manager",
-      //     "aws-serverless-express",
-      //   ],
-      // }
+      bundling: {
+        externalModules: [
+          "reflect-metadata",
+          "express",
+          "dotenv",
+          "typeorm",
+          "http-errors",
+          "@aws-sdk/client-secrets-manager",
+          "aws-serverless-express",
+        ],
+      },
     });
   }
 }
