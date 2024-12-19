@@ -24,7 +24,14 @@ export class LambdaStack extends Stack {
         DB_DATABASE: "mydatabase",
       },
       bundling: {
-        externalModules: ["reflect-metadata", "express", "dotenv", "typeorm", "http-errors"],
+        externalModules: [
+          "reflect-metadata",
+          "express",
+          "dotenv",
+          "typeorm",
+          "http-errors",
+          "@aws-sdk/client-secrets-manager",
+        ],
       },
     });
   }
