@@ -35,7 +35,7 @@ export class MyLambdaStack extends cdk.Stack {
         ],
       },
     });
-
+    //
     const api = new LambdaRestApi(this, "LambdaRestApi", {
       handler: this.myLambda,
     });
