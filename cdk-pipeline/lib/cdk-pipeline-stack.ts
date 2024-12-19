@@ -16,7 +16,7 @@ export class CdkPipelineStack extends cdk.Stack {
         primaryOutputDirectory: "cdk-pipeline/cdk.out",
       }),
     });
-
+    //stage
     const testStage = pipeline.addStage(
       new PipelineStageStack(this, "PipelineTestStage", {
         stageName: "test",
