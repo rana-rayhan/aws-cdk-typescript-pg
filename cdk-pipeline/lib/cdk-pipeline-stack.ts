@@ -22,5 +22,10 @@ export class CdkPipelineStack extends cdk.Stack {
         stageName: "test",
       })
     );
+    testStage.addPre(
+      new ShellStep("Pre-Test", {
+        commands: ["cd cdk-pipeline", "npm ci", "npm test"],
+      })
+    );
   }
 }
