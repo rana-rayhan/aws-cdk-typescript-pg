@@ -31,6 +31,7 @@ export class LambdaStack extends Stack {
           "typeorm",
           "http-errors",
           "@aws-sdk/client-secrets-manager",
+          "aws-serverless-express",
         ],
       },
     });
