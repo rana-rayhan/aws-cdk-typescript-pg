@@ -13,7 +13,7 @@ export class LambdaStack extends Stack {
 
     new NodejsFunction(this, "MyLambda", {
       handler: "handler",
-      entry: join(__dirname, "..", "lambda", "index.ts"),
+      entry: join(__dirname, "..", "..", "..", "lambda", "src", "index.ts"),
       runtime: Runtime.NODEJS_22_X,
       timeout: Duration.seconds(120),
       environment: {
