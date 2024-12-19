@@ -14,7 +14,7 @@ app.use(express.json());
 // Get all users
 app.get("/", async (req: Request, res: Response) => {
   try {
-    // await initializeDatabase();
+    await initializeDatabase();
     res.status(200).json({ message: "Success" });
   } catch (error) {
     console.error("Error fetching users:", error);
