@@ -5,6 +5,7 @@
     "lib": ["es2020", "dom"],
     "esModuleInterop": true,
     "declaration": true,
+
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

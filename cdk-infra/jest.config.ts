@@ -8,8 +8,6 @@ const config: Config = {
     "^.+\\.tsx?$": "ts-jest",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-  collectCoverage: true,
-  coverageDirectory: "coverage",
 };
 
 export default config;
